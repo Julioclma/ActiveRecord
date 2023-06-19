@@ -2,7 +2,9 @@
 
 namespace Activerecord\app\database\activerecord;
 
+use Activerecord\app\database\interfaces\ActiveRecordExecuteInterface;
 use Activerecord\app\database\interfaces\ActiveRecordInterface;
+use Activerecord\app\database\interfaces\InsertInterface;
 use Activerecord\app\database\interfaces\UpdateInterface;
 use DomainException;
 use ReflectionClass;
@@ -23,7 +25,7 @@ abstract class ActiveRecord implements ActiveRecordInterface
     {
         return $this->table;
     }
-    public function getAttributes() : array
+    public function getAttributes(): array
     {
         return $this->attributes;
     }
@@ -36,9 +38,8 @@ abstract class ActiveRecord implements ActiveRecordInterface
     {
         return $this->attributes[$attribute];
     }
-    public function update(UpdateInterface $updateInterface): void
+    public function execute(ActiveRecordExecuteInterface $activeRecordExecuteInterface): void
     {
-            $updateInterface->update($this);
-        
+        $activeRecordExecuteInterface->execute($this);
     }
 }
