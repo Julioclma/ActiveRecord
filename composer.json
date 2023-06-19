@@ -2,7 +2,7 @@
     "name": "juliomafra/activerecord",
     "autoload": {
         "psr-4": {
-            "app\\": "app"
+            "Activerecord\\": "src/"
         }
     },
     "authors": [
