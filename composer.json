@@ -1,0 +1,15 @@
+{
+    "name": "juliomafra/activerecord",
+    "autoload": {
+        "psr-4": {
+            "app\\": "app"
+        }
+    },
+    "authors": [
+        {
+            "name": "Julio Mafra",
+            "email": "julioclmafra@gmail.com"
+        }
+    ],
+    "require": {}
+}
