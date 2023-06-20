@@ -11,5 +11,8 @@
             "email": "julioclmafra@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "files" : [
+        "src/app/helpers/helper.php"
+    ]
 }
