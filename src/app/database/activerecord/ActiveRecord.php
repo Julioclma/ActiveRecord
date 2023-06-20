@@ -11,7 +11,6 @@ use ReflectionClass;
 
 abstract class ActiveRecord implements ActiveRecordInterface
 {
-
     protected ?string $table = null;
     protected array $attributes;
 
