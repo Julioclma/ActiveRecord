@@ -7,23 +7,16 @@ use Activerecord\app\database\interfaces\ActiveRecordExecuteInterface;
 use Activerecord\app\database\interfaces\ActiveRecordInterface;
 use PDO;
 
-class Find implements ActiveRecordExecuteInterface
+class FindAll implements ActiveRecordExecuteInterface
 {
-    private string $field;
-    private string $value;
-    public function __construct(string $field, string $value)
-    {
-        $this->field = $field;
-        $this->value = $value;
-    }
     public function execute(ActiveRecordInterface $activeRecordInterface): void
     {
         $sql = $this->createQuery($activeRecordInterface);
 
         try {
             $pdo = Connection::connect()->prepare($sql);
-            $pdo->execute([$this->field => $this->value]);
-            $results = $pdo->fetchAll(PDO::FETCH_OBJ);
+            $pdo->execute();
+            $results = $pdo->fetchAll(PDO::FETCH_ASSOC);
             var_dump($results);
         } catch (\Throwable $th) {
             formatExcetion($th);
@@ -32,7 +25,7 @@ class Find implements ActiveRecordExecuteInterface
 
     private function createQuery(ActiveRecordInterface $activeRecordInterface): string
     {
-        $sql = "SELECT * FROM {$activeRecordInterface->getTable()} WHERE {$this->field} = :{$this->field}";
+        $sql = "SELECT * FROM {$activeRecordInterface->getTable()}";
 
         return $sql;
     }
