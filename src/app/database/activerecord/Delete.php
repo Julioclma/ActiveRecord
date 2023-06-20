@@ -5,9 +5,8 @@ namespace Activerecord\app\database\activerecord;
 use Activerecord\app\database\connection\Connection;
 use Activerecord\app\database\interfaces\ActiveRecordExecuteInterface;
 use Activerecord\app\database\interfaces\ActiveRecordInterface;
-use PDO;
 
-class Find implements ActiveRecordExecuteInterface
+class Delete implements ActiveRecordExecuteInterface
 {
     private string $field;
     private string $value;
@@ -23,8 +22,7 @@ class Find implements ActiveRecordExecuteInterface
         try {
             $pdo = Connection::connect()->prepare($sql);
             $pdo->execute([$this->field => $this->value]);
-            $results = $pdo->fetchAll(PDO::FETCH_OBJ);
-            var_dump($results);
+            echo $pdo->rowCount();
         } catch (\Throwable $th) {
             formatExcetion($th);
         }
@@ -32,7 +30,7 @@ class Find implements ActiveRecordExecuteInterface
 
     private function createQuery(ActiveRecordInterface $activeRecordInterface): string
     {
-        $sql = "SELECT * FROM {$activeRecordInterface->getTable()} WHERE {$this->field} = :{$this->field}";
+        $sql = "DELETE FROM {$activeRecordInterface->getTable()} WHERE {$this->field} = :{$this->field}";
 
         return $sql;
     }
