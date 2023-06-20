@@ -10,7 +10,6 @@ use Exception;
 
 class Insert implements ActiveRecordExecuteInterface
 {
-
     public function execute(ActiveRecordInterface $activeRecordInterface): void
     {
         $sql = $this->createQuery($activeRecordInterface);
