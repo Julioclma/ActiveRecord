@@ -17,5 +17,5 @@ $update = new User;
 
 $update->firstName = 'Julio';
 $update->lastName = 'Mafra';
-$update->id = 1;
-$update->execute(new Update);
+
+$update->execute(new Update('id', '1'));
